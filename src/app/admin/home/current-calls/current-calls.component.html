@@ -1,0 +1,32 @@
+<div class="overflow-x-auto">
+    <p-table styleClass="p-datatable-sm p-datatable-gridlines" [value]="data" [paginator]="true" [rows]="pageSize"
+        [rowsPerPageOptions]="pageSizeOptions" [totalRecords]="totalRecords" [lazy]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th> Puesto de Trabajo </th>
+                <th class="text-center"> Nro. de Vacantes </th>
+                <th class="text-center"> Requisitos </th>
+                <th class="text-center"> Contratista </th>
+                <th class="text-center"> Peridodo de Postulación </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-element>
+            <tr>
+                <td> {{element.jobPositionName}} </td>
+                <td class="text-center"> {{element.quantity}} </td>
+                <td class="text-center">
+                    <span class="link" (click)="openDialog(element.id)" (keypress)="openDialog(element.id)">Ver
+                        requisitos</span>
+                </td>
+                <td class="text-center"> {{element.companyName}} </td>
+                <td class="text-center"> {{element.startDate | date:"dd/MM/yyyy"}} - {{element.endDate |
+                    date:"dd/MM/yyyy"}}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">Sin datos que mostrar</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,33 @@
+<form [formGroup]="formGroup" class="p-4" (ngSubmit)="onSubmit()">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="p-fluid">
+            <div class="field">
+                <label for="jobPositionName">Job Position</label>
+                <input id="jobPositionName" pInputText type="text" formControlName="jobPositionName">
+                <p-message *ngIf="hasError('jobPositionName', 'required')" severity="danger"
+                    text="Requerido"></p-message>
+                <p-message *ngIf="hasError('jobPositionName', 'minlength')" severity="danger"
+                    text="{{getMinLengthErrorMessage('jobPositionName')}}"></p-message>
+                <p-message *ngIf="hasError('jobPositionName', 'maxlength')" severity="danger"
+                    text="{{getMaxLengthErrorMessage('jobPositionName')}}"></p-message>
+            </div>
+        </div>
+        <div class="p-fluid">
+            <div class="field">
+                <label for="companyName">Company Name</label>
+                <input id="companyName" pInputText type="text" formControlName="companyName">
+                <p-message *ngIf="hasError('companyName', 'required')" severity="danger" text="Requerido"></p-message>
+                <p-message *ngIf="hasError('companyName', 'minlength')" severity="danger"
+                    text="{{getMinLengthErrorMessage('companyName')}}"></p-message>
+                <p-message *ngIf="hasError('companyName', 'maxlength')" severity="danger"
+                    text="{{getMaxLengthErrorMessage('companyName')}}"></p-message>
+            </div>
+        </div>
+        <button type="submit" #submitButton hidden></button>
+    </div>
+</form>
+<div class="px-4 pt-4">
+    <p-button mat-flat-button (click)="submitButton.click()"
+        class="mr-2 btn-principal">{{isCreationMode()?'REGISTRAR':'GUARDAR'}}</p-button>
+    <p-button mat-stroked-button type="button" (click)="close()">CANCELAR</p-button>
+</div>
